@@ -1,0 +1,26 @@
+server:
+  port: 9097
+  
+spring:
+  application.name: resilience4j-demo
+
+management:
+  endpoints.web.exposure.include:
+    - '*'
+  endpoint.health.show-details: always
+  health.circuitbreakers.enabled: true
+      
+      
+resilience4j:
+  retry:
+    instances:
+      gill:
+        max-attempts: 5
+        wait-duration: 5s
+      
+  timelimiter:
+    instances:
+      suyadpreet:
+        timeout-duration: 2s
+        cancel-running-future: true # wheather a cancel should be called on running Future 
+       
